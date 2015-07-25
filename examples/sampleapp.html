@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alerting service - AngularJS reusable UI component</title>
+        <meta charset="UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular.js"></script>
+
+        <script src="../dist/debug/vsalert-0.0.1.js"></script>
+        <link href="../dist/debug/vsalert-0.0.1.css" rel="stylesheet" type="text/css"/>
+
+        <script src="sampleapp.js"></script>
+        <link href="sampleapp.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body ng-app="sampleapp">
+        <div ng-controller="samplectrl">
+            <h3>Alerting service - AngularJS reusable UI component</h3>
+            
+            <p>Click buttons below to generate example alerts.</p>
+            
+            <hr/>
+
+            <div>
+                <button class="button-success" ng-click="alertSuccess()">Alert Success</button>
+                <button class="button-info" ng-click="alertInfo()">Alert Info</button>
+                <button class="button-warning" ng-click="alertWarning()">Alert Warning</button>
+                <button class="button-error" ng-click="alertError()">Alert Error</button>
+                <br/>
+            </div>   
+            
+            <hr/>
+
+        </div>
+    </body>    
+
+</html>
