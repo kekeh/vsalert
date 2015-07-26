@@ -1,12 +1,12 @@
 /* 
-*  Name: vsalert 
-*  Description: Alerting service - AngularJS reusable UI component 
-*  Version: 0.0.2 
-*  Author: kekeh 
-*  Homepage: http://kekeh.github.io/vsalert 
-*  License: MIT 
-*  Date: 2015-07-25 
-*/ 
+ *  Name: vsalert
+ *  Description: Alerting service - AngularJS reusable UI component
+ *  Version: 0.0.2
+ *  Author: kekeh
+ *  Homepage: http://kekeh.github.io/vsalert
+ *  License: MIT
+ *  Date: 2015-07-26
+ */
 angular.module('template-vsalert-0.0.2.html', []);
 
 
@@ -21,9 +21,9 @@ angular.module('vsalert', ["template-vsalert-0.0.2.html"])
  * @name run
  * @description run adds the alert template to the template cache.
  */
-    .run(function ($templateCache) {
+    .run(['$templateCache',function ($templateCache) {
         $templateCache.put('vsalert.html', '<div class="vsalert"><span class="vsicon"></span><span class="vstext"></span></div>');
-    })
+    }])
 /**
  * @ngdoc object
  * @name vsalertConfig
