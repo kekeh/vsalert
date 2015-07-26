@@ -9,9 +9,9 @@ angular.module('vsalert', [])
  * @name run
  * @description run adds the alert template to the template cache.
  */
-    .run(function ($templateCache) {
+    .run(['$templateCache',function ($templateCache) {
         $templateCache.put('vsalert.html', '<div class="vsalert"><span class="vsicon"></span><span class="vstext"></span></div>');
-    })
+    }])
 /**
  * @ngdoc object
  * @name vsalertConfig
