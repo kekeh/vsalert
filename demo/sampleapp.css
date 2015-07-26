@@ -1,0 +1,39 @@
+
+.button-success,
+.button-info,
+.button-warning,
+.button-error {
+    padding: 2px 6px;
+    cursor: pointer;
+    border: 1px solid #AAA;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.button-success:hover,
+.button-info:hover,
+.button-warning:hover,
+.button-error:hover {
+    background-color: #78FA89;
+    color: #000;
+}
+
+.button-success {
+    background-color: #CFEAC4;
+    color: #2C763E;
+}
+
+.button-info {
+    background-color: #CFE3ED;
+    color: #3A87AD;
+}
+
+.button-warning {
+    background-color: #FFFFCC;
+    color: #8E6621;
+}
+
+.button-error {
+    background-color: #F2DEDE;
+    color: #A94444;
+}
