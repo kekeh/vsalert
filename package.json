@@ -2,7 +2,7 @@
   "author": "kekeh",
   "description": "Alerting service - AngularJS reusable UI component",
   "name": "vsalert",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "homepage": "http://kekeh.github.io/vsalert",
   "dependencies": {
