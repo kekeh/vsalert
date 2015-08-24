@@ -1,13 +1,13 @@
 /* 
 *  Name: vsalert 
 *  Description: Alerting service - AngularJS reusable UI component 
-*  Version: 0.0.3 
+*  Version: 0.0.4 
 *  Author: kekeh 
 *  Homepage: http://kekeh.github.io/vsalert 
 *  License: MIT 
-*  Date: 2015-08-02 
+*  Date: 2015-08-24 
 */ 
-angular.module('template-vsalert-0.0.3.html', []);
+angular.module('template-vsalert-0.0.4.html', []);
 
 
 /**
@@ -15,13 +15,13 @@ angular.module('template-vsalert-0.0.3.html', []);
  * @name vsalert
  * @description vsalert is module of the alert component.
  */
-angular.module('vsalert', ["template-vsalert-0.0.3.html"])
+angular.module('vsalert', ["template-vsalert-0.0.4.html"])
 /**
  * @ngdoc object
  * @name run
  * @description run adds the alert template to the template cache.
  */
-    .run(['$templateCache',function ($templateCache) {
+    .run(['$templateCache', function ($templateCache) {
         $templateCache.put('vsalert.html', '<div class="vsalert"><span class="vsicon"></span><span class="vstext"></span></div>');
     }])
 /**
@@ -31,6 +31,7 @@ angular.module('vsalert', ["template-vsalert-0.0.3.html"])
  */
     .constant('vsalertConfig', {
         ALERT_VISIBLE_TIME: 5000, // in milliseconds
+        ALERT_INFINITE_VISIBLE: 0,
         SHOW_ICON_ON_ALERT: true,
         ALERT_MARGIN: 5,
         SUCCESS: 'success',
@@ -45,36 +46,37 @@ angular.module('vsalert', ["template-vsalert-0.0.3.html"])
  */
     .factory('vsalert', ['$rootScope', '$compile', '$document', '$templateCache', '$http', '$interval', 'vsalertConfig', function ($rootScope, $compile, $document, $templateCache, $http, $interval, vsalertConfig) {
         var serviceObj = {};
-
         serviceObj.alert = function (alert) {
             $http.get('vsalert.html', {cache: $templateCache}).success(function (resp) {
-                var position = {top: 0, right: 0};
                 var visibleTime = !angular.isUndefined(alert.visibleTime) ? alert.visibleTime : vsalertConfig.ALERT_VISIBLE_TIME;
                 var showIcon = !angular.isUndefined(alert.icon) ? alert.icon : vsalertConfig.SHOW_ICON_ON_ALERT;
-                var scope = $rootScope.$new();
-                var alertElem = $compile(angular.element(resp))(scope);
+                var alertElem = $compile(angular.element(resp))($rootScope.$new());
 
                 setColors(alert);
-                updatePosition();
 
-                alertElem.css('top', position.top + 'px');
-                alertElem.css('right', position.right + 'px');
+                alertElem.css('top', getTopPos() + 'px');
+                alertElem.css('right', vsalertConfig.ALERT_MARGIN + 'px');
 
                 angular.element(alertElem.children()[1]).text(alert.message);
                 alertElem.on('click', onAlertClick);
                 body().append(alertElem);
 
-                var interval = $interval(function () {
-                    unregisterEvent(alertElem);
-                    alertElem.remove();
-                    updatePosition();
-                }, visibleTime, 1);
+                var interval = null;
+                if (visibleTime > vsalertConfig.ALERT_INFINITE_VISIBLE) {
+                    interval = $interval(function () {
+                        unregisterEvent(alertElem);
+                        alertElem.remove();
+                        updatePositions();
+                    }, visibleTime, 1);
+                }
 
                 function onAlertClick() {
-                    $interval.cancel(interval);
+                    if (interval !== null) {
+                        $interval.cancel(interval);
+                    }
                     unregisterEvent();
-                    alertElem.remove();
-                    updatePosition();
+                    alertElem.remove()
+                    updatePositions();
                 }
 
                 function unregisterEvent() {
@@ -85,35 +87,24 @@ angular.module('vsalert', ["template-vsalert-0.0.3.html"])
                     return $document.find('body');
                 }
 
-                function html() {
-                    return $document.find('html');
-                }
-
-                function scrollTopPos() {
-                    var tp = html()[0].scrollTop;
-                    if (tp === 0) {
-                        return body()[0].scrollTop;
-                    }
-                    return tp;
-                }
-
-                function scrollLeftPos() {
-                    var lp = html()[0].scrollLeft;
-                    if (lp === 0) {
-                        return body()[0].scrollLeft;
-                    }
-                    return lp;
-                }
-
-                function updatePosition() {
+                function getTopPos() {
                     var alerts = $document[0].querySelectorAll('.vsalert');
-                    position.top = vsalertConfig.ALERT_MARGIN + scrollTopPos();
-                    position.right = vsalertConfig.ALERT_MARGIN + -scrollLeftPos();
+                    if(alerts.length === 0) {
+                        return vsalertConfig.ALERT_MARGIN;
+                    }
+                    else {
+                        var bottomAlert = angular.element(alerts[alerts.length - 1]);
+                        return bottomAlert.prop('offsetTop')  + bottomAlert.prop('offsetHeight') + vsalertConfig.ALERT_MARGIN;
+                    }
+                }
+
+                function updatePositions() {
+                    var alerts = $document[0].querySelectorAll('.vsalert');
+                    var topPos = vsalertConfig.ALERT_MARGIN;
                     angular.forEach(alerts, function (alert) {
                         alert = angular.element(alert);
-                        alert.css('top', position.top + 'px');
-                        alert.css('right', position.right + 'px');
-                        position.top += alert.prop('offsetHeight') + vsalertConfig.ALERT_MARGIN;
+                        alert.css('top', topPos + 'px');
+                        topPos += alert.prop('offsetHeight') + vsalertConfig.ALERT_MARGIN;
                     });
                 }
 
@@ -125,7 +116,6 @@ angular.module('vsalert', ["template-vsalert-0.0.3.html"])
                 }
             });
         };
-
         return serviceObj;
     }]);
 
