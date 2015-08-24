@@ -1,4 +1,4 @@
-# vsalert v. 0.0.3
+# vsalert v. 0.0.4
 
 **Alerting service - AngularJS reusable UI component**
 
@@ -7,10 +7,10 @@ Simple AngularJS service which implements the alert system. This component depen
 
 ## Usage
 
-* include the **vsalert-0.0.3.min.js** and the **vsalert-0.0.3.min.css** files into your project. See the **Build project** and the **Installation** chapters below.
+* include the **vsalert-0.0.4.min.js** and the **vsalert-0.0.4.min.css** files into your project. See the **Build project** and the **Installation** chapters below.
 ```html
-<script src="vsalert-0.0.3.min.js"></script>
-<link href="vsalert-0.0.3.min.css" rel="stylesheet" type="text/css">
+<script src="vsalert-0.0.4.min.js"></script>
+<link href="vsalert-0.0.4.min.css" rel="stylesheet" type="text/css">
 ```
 * inject the **vsalert** module into your application module.
 * and inject the **vsalert** service into each controller which is using alerting system.
@@ -62,7 +62,7 @@ By injecting the **vsalert** is possible to send alerts to the service by callin
 | :------------ |:---------------|:---------------|:---------------|
 | level | string | Level of the alert. Can be on of the following string: **success**, **info**, **warning** or **error** | yes |
 | message | string | Message of the alert shown on the UI. | yes |
-| visibleTime | number | Milliseconds on how long time the alert is visible on the UI. If not given the default (5000 ms) or **vsalertConfig** configured value is used. | no |
+| visibleTime | number | Milliseconds on how long time the alert is visible on the UI. If not given the default (5000 ms) or **vsalertConfig** configured value is used. If given value is zero, the alert is visible infinite and it can be closed by clicking it. | no |
 | icon | boolean | Is icon shown or not on the UI. If not given the default **true** or **vsalertConfig** configured value is used. | no |
 
 
@@ -75,7 +75,7 @@ By injecting the **vsalertConfig** is possible to set configuration data dynamic
 In the **examples** folder of this project has the sample application and the online demo is [here](http://kekeh.github.io/vsalert)
 
 ## Dependencies
-Depends on only the AngularJS. Implemented using the AngularJS version 1.3.17.
+Depends on only the AngularJS. Implemented using the AngularJS version 1.4.3.
 
 ## Build project
 * Build can be done by executing the **grunt** command. It creates the **dist/debug** and the **dist/min** folders and put files to these folders.
@@ -96,7 +96,7 @@ bower install vsalert
 * Opera 28.0
 * Mobile Safari 8
 
-## Licence
+## License
 * License: MIT
 
 ## Author
