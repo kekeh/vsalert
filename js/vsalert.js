@@ -10,7 +10,7 @@ angular.module('vsalert', [])
  * @description run adds the alert template to the template cache.
  */
     .run(['$templateCache', function ($templateCache) {
-        $templateCache.put('vsalert.html', '<div class="vsalert"><span class="vsicon"></span><span class="vstext"></span></div>');
+        $templateCache.put('vsalert.html', '<div class="vsalert _vsalert_"><span class="vsicon"></span><span class="vstext"></span></div>');
     }])
 /**
  * @ngdoc object
@@ -22,6 +22,7 @@ angular.module('vsalert', [])
         ALERT_INFINITE_VISIBLE: 0,
         SHOW_ICON_ON_ALERT: true,
         ALERT_MARGIN: 5,
+        ALERT_ID: '._vsalert_',
         SUCCESS: 'success',
         INFO: 'info',
         WARNING: 'warning',
@@ -76,7 +77,7 @@ angular.module('vsalert', [])
                 }
 
                 function getTopPos() {
-                    var alerts = $document[0].querySelectorAll('.vsalert');
+                    var alerts = $document[0].querySelectorAll(vsalertConfig.ALERT_ID);
                     if(alerts.length === 0) {
                         return vsalertConfig.ALERT_MARGIN;
                     }
@@ -87,7 +88,7 @@ angular.module('vsalert', [])
                 }
 
                 function updatePositions() {
-                    var alerts = $document[0].querySelectorAll('.vsalert');
+                    var alerts = $document[0].querySelectorAll(vsalertConfig.ALERT_ID);
                     var topPos = vsalertConfig.ALERT_MARGIN;
                     angular.forEach(alerts, function (alert) {
                         alert = angular.element(alert);

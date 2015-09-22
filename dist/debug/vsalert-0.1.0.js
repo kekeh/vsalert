@@ -1,13 +1,13 @@
 /* 
 *  Name: vsalert 
 *  Description: Alerting service - AngularJS reusable UI component 
-*  Version: 0.0.4 
+*  Version: 0.1.0 
 *  Author: kekeh 
 *  Homepage: http://kekeh.github.io/vsalert 
 *  License: MIT 
-*  Date: 2015-08-24 
+*  Date: 2015-09-22 
 */ 
-angular.module('template-vsalert-0.0.4.html', []);
+angular.module('template-vsalert-0.1.0.html', []);
 
 
 /**
@@ -15,14 +15,14 @@ angular.module('template-vsalert-0.0.4.html', []);
  * @name vsalert
  * @description vsalert is module of the alert component.
  */
-angular.module('vsalert', ["template-vsalert-0.0.4.html"])
+angular.module('vsalert', ["template-vsalert-0.1.0.html"])
 /**
  * @ngdoc object
  * @name run
  * @description run adds the alert template to the template cache.
  */
     .run(['$templateCache', function ($templateCache) {
-        $templateCache.put('vsalert.html', '<div class="vsalert"><span class="vsicon"></span><span class="vstext"></span></div>');
+        $templateCache.put('vsalert.html', '<div class="vsalert _vsalert_"><span class="vsicon"></span><span class="vstext"></span></div>');
     }])
 /**
  * @ngdoc object
@@ -34,6 +34,7 @@ angular.module('vsalert', ["template-vsalert-0.0.4.html"])
         ALERT_INFINITE_VISIBLE: 0,
         SHOW_ICON_ON_ALERT: true,
         ALERT_MARGIN: 5,
+        ALERT_ID: '._vsalert_',
         SUCCESS: 'success',
         INFO: 'info',
         WARNING: 'warning',
@@ -88,7 +89,7 @@ angular.module('vsalert', ["template-vsalert-0.0.4.html"])
                 }
 
                 function getTopPos() {
-                    var alerts = $document[0].querySelectorAll('.vsalert');
+                    var alerts = $document[0].querySelectorAll(vsalertConfig.ALERT_ID);
                     if(alerts.length === 0) {
                         return vsalertConfig.ALERT_MARGIN;
                     }
@@ -99,7 +100,7 @@ angular.module('vsalert', ["template-vsalert-0.0.4.html"])
                 }
 
                 function updatePositions() {
-                    var alerts = $document[0].querySelectorAll('.vsalert');
+                    var alerts = $document[0].querySelectorAll(vsalertConfig.ALERT_ID);
                     var topPos = vsalertConfig.ALERT_MARGIN;
                     angular.forEach(alerts, function (alert) {
                         alert = angular.element(alert);
