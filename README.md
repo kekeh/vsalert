@@ -1,4 +1,4 @@
-# vsalert v. 0.1.0
+# vsalert v. 0.1.1
 
 **Alerting service - AngularJS reusable UI component**
 
@@ -7,10 +7,10 @@ Simple AngularJS service which implements the alert system. This component depen
 
 ## Usage
 
-* include the **vsalert-0.1.0.min.js** and the **vsalert-0.1.0.min.css** files into your project. See the **Build project** and the **Installation** chapters below.
+* include the **vsalert-0.1.1.min.js** and the **vsalert-0.1.1.min.css** files into your project. See the **Build project** and the **Installation** chapters below.
 ```html
-<script src="vsalert-0.1.0.min.js"></script>
-<link href="vsalert-0.1.0.min.css" rel="stylesheet" type="text/css">
+<script src="vsalert-0.1.1.min.js"></script>
+<link href="vsalert-0.1.1.min.css" rel="stylesheet" type="text/css">
 ```
 * inject the **vsalert** module into your application module.
 * and inject the **vsalert** service into each controller which is using alerting system.

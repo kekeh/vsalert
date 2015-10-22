@@ -1,7 +1,7 @@
 {
   "name": "vsalert",
   "description": "Alerting service - AngularJS reusable UI component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "http://kekeh.github.io/vsalert",
   "license": "MIT",
   "authors": [
@@ -12,8 +12,8 @@
     "url": "https://github.com/kekeh/vsalert.git"
   },
   "main": [
-    "dist/min/vsalert-0.1.0.min.css",
-    "dist/min/vsalert-0.1.0.min.js"
+    "dist/min/vsalert-0.1.1.min.css",
+    "dist/min/vsalert-0.1.1.min.js"
   ],
   "keywords": [
     "AngularJS",

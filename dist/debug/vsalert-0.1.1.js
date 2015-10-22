@@ -1,13 +1,13 @@
 /* 
 *  Name: vsalert 
 *  Description: Alerting service - AngularJS reusable UI component 
-*  Version: 0.1.0 
+*  Version: 0.1.1 
 *  Author: kekeh 
 *  Homepage: http://kekeh.github.io/vsalert 
 *  License: MIT 
-*  Date: 2015-09-22 
+*  Date: 2015-10-22 
 */ 
-angular.module('template-vsalert-0.1.0.html', []);
+angular.module('template-vsalert-0.1.1.html', []);
 
 
 /**
@@ -15,7 +15,7 @@ angular.module('template-vsalert-0.1.0.html', []);
  * @name vsalert
  * @description vsalert is module of the alert component.
  */
-angular.module('vsalert', ["template-vsalert-0.1.0.html"])
+angular.module('vsalert', ["template-vsalert-0.1.1.html"])
 /**
  * @ngdoc object
  * @name run

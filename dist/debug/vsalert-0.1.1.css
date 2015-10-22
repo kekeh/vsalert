@@ -1,6 +1,5 @@
 .vsalert {
     position: fixed;
-    width: 280px;
     z-index: 1000;
     border-radius: 4px;
     padding: 6px;
@@ -23,6 +22,7 @@
 }
 
 .vsalert .vstext {
+    width: 250px;
     font-size: 14px;
     white-space: normal;
 }
